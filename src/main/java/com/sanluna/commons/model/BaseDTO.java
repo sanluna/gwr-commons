@@ -48,8 +48,8 @@ public abstract class BaseDTO<T extends BaseDTO<T>> {
         return created;
     }
 
-    public T setCreated(LocalDateTime created) {
-        this.created = formatTime(created);
+    public T setCreated(String created) {
+        this.created = created;
         return (T) this;
     }
 
@@ -66,8 +66,8 @@ public abstract class BaseDTO<T extends BaseDTO<T>> {
         return lastModified;
     }
 
-    public T setLastModified(LocalDateTime lastModified) {
-        this.lastModified = formatTime(lastModified);
+    public T setLastModified(String lastModified) {
+        this.lastModified = lastModified;
         return (T) this;
     }
 

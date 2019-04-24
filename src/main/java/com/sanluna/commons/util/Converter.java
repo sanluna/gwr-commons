@@ -25,9 +25,9 @@ public class Converter {
         return dto.setActive(entity.isActive())
                 .setId(entity.getId().toString())
                 .setCreatedBy(entity.getCreatedBy())
-                .setCreated(entity.getCreated())
+                .setCreated(formatTime(entity.getCreated()))
                 .setHidden(entity.isHidden())
-                .setLastModified(entity.getLastModified())
+                .setLastModified(formatTime(entity.getLastModified()))
                 .setLastModifiedBy(entity.getLastModifiedBy());
     }
 
