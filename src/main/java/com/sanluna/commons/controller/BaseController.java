@@ -12,6 +12,8 @@ public interface BaseController<T extends BaseDTO<T>> {
 
     T getById(String ID);
 
+    T update(T dto);
+
     void delete(T dto);
 
     void deleteById(String ID);

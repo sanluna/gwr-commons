@@ -115,4 +115,7 @@ public abstract class BaseEntity<T extends BaseEntity<T>> {
     @SuppressWarnings("unchecked")
     public abstract <T1 extends BaseDTO<T1>> T1 convertToDTO();
 
+    @SuppressWarnings("unchecked")
+    public abstract T updateEntity(T newEntity);
+
 }

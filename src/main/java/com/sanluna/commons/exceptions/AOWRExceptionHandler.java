@@ -18,15 +18,19 @@ public class AOWRExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler({AlreadyExistsException.class,
-            IncorrectValuesEntered.class,
             DataIntegrityViolationException.class})
     public void springHandleAlreadyExist(HttpServletResponse response) throws IOException {
-        response.sendError(HttpStatus.BAD_REQUEST.value());
+        response.sendError(HttpStatus.CONFLICT.value(), "The object already exists");
+    }
+
+    @ExceptionHandler({IncorrectValuesEntered.class})
+    public void springHandleIncorerectValues(HttpServletResponse response) throws IOException {
+        response.sendError(HttpStatus.BAD_REQUEST.value(), "You have entered invalid values");
     }
 
     @ExceptionHandler({Exception.class})
     public void springHandleTheRest(HttpServletResponse response) throws IOException {
-        response.sendError(HttpStatus.BAD_GATEWAY.value());
+        response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Something went wrong!");
     }
 
 }
