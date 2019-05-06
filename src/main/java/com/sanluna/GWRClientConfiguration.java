@@ -1,5 +1,6 @@
 package com.sanluna;
 
+import com.sanluna.clients.memberclient.MemberClient;
 import com.sanluna.clients.tenantclient.GWRTenantClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -27,6 +28,13 @@ public class GWRClientConfiguration {
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     public GWRTenantClient tenantClient() {
         return new GWRTenantClient();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(MemberClient.class)
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+    public MemberClient memberClient() {
+        return new MemberClient();
     }
 
     @Value("${gwr.oauth2.access-token-uri}")

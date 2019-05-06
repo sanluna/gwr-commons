@@ -28,9 +28,5 @@ public class AOWRExceptionHandler extends ResponseEntityExceptionHandler {
         response.sendError(HttpStatus.BAD_REQUEST.value(), "You have entered invalid values");
     }
 
-    @ExceptionHandler({Exception.class})
-    public void springHandleTheRest(HttpServletResponse response) throws IOException {
-        response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Something went wrong!");
-    }
 
 }

@@ -17,17 +17,16 @@ public class GWRTenantInterceptor extends HandlerInterceptorAdapter {
     private static ArrayList<String> ignoreList = new ArrayList<>();
 
     public GWRTenantInterceptor() {
-        ignoreList.add("status/health");
+    ignoreList.add("status/health");
     }
-
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String pathInfo = request.getPathInfo();
-        if (pathInfo == null) {
+        if(pathInfo == null){
             pathInfo = request.getRequestURI().substring(request.getContextPath().length());
         }
-        for (String x : ignoreList) {
-            if (pathInfo.contains(x)) {
+        for(String x : ignoreList){
+            if(pathInfo.contains(x)){
                 return true;
             }
         }
