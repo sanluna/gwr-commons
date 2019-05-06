@@ -14,6 +14,8 @@ public interface BaseService<T extends BaseEntity<T>> {
 
     T getById(String ID);
 
+    T update(T entity);
+
     void delete(T entity);
 
     void deleteById(String ID);

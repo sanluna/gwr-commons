@@ -3,10 +3,13 @@ package com.sanluna.commons.service;
 import com.sanluna.commons.exceptions.AlreadyExistsException;
 import com.sanluna.commons.exceptions.NotFoundException;
 import com.sanluna.commons.model.entity.BaseEntity;
+import com.sanluna.commons.repository.AOWR_Repository;
+import com.sanluna.security.GWRTokenHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import com.sanluna.commons.repository.AOWR_Repository;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,11 +24,14 @@ public abstract class GenericService<T extends BaseEntity<T>> implements BaseSer
             checkIfFound(entity.getId().toString());
         } catch (NotFoundException | NullPointerException e) {
             try {
-                return genericRepository.save(entity.createNew());
+                return genericRepository.save(entity.createNew(GWRTokenHelper.currentUsername()));
             } catch (DataIntegrityViolationException e1) {
                 throw new AlreadyExistsException("object already exists!");
+            } catch (Exception e2) {
+                e2.printStackTrace();
+                return genericRepository.save(entity.createNew());
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         throw new AlreadyExistsException("object with id " + entity.getId().toString() + " already exists!");
@@ -43,6 +49,19 @@ public abstract class GenericService<T extends BaseEntity<T>> implements BaseSer
     @Override
     public T getById(String ID) {
         return checkIfFound(ID);
+    }
+
+    @Override
+    public T update(T newEntity) {
+        T oldEntity = checkIfFound(newEntity.getId().toString());
+        oldEntity.updateEntity(newEntity);
+        oldEntity.setLastModified(LocalDateTime.now());
+        try {
+            oldEntity.setLastModifiedBy(GWRTokenHelper.currentUsername());
+        } catch (AuthenticationCredentialsNotFoundException e2) {
+            oldEntity.setLastModifiedBy("System");
+        }
+        return genericRepository.save(oldEntity);
     }
 
     @Override

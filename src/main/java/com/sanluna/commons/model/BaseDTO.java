@@ -1,11 +1,6 @@
 package com.sanluna.commons.model;
 
 import com.sanluna.commons.model.entity.BaseEntity;
-import com.sanluna.commons.util.Converter;
-
-import java.time.LocalDateTime;
-
-import static com.sanluna.commons.util.Converter.*;
 
 public abstract class BaseDTO<T extends BaseDTO<T>> {
 
