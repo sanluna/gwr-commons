@@ -12,6 +12,11 @@ import java.util.ArrayList;
 import static com.sanluna.multitenancy.multitenancy.TenantContext.TENANT_HEADER;
 import static com.sanluna.multitenancy.multitenancy.TenantContext.setCurrentTenant;
 
+/**
+ * This class intercepts the request in order to get the tenantId from firstly the principal which will exist only if the user requesting is logged in
+ * otherwise it will read the tenantId header the order is important for not letting users on other tenants access information from others.
+ */
+
 public class GWRTenantInterceptor extends HandlerInterceptorAdapter {
 
     private static ArrayList<String> ignoreList = new ArrayList<>();

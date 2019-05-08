@@ -21,6 +21,10 @@ public class Converter {
         return LocalDateTime.parse(time, formatter);
     }
 
+    /**
+     *
+     * Handles the basic conversion of every entity into an dto (the basic information put on every entity)
+     */
     public static <TDTO extends BaseDTO<TDTO>, TEntity extends BaseEntity<TEntity>> TDTO toDTO(TEntity entity, TDTO dto) {
         return dto.setActive(entity.isActive())
                 .setId(entity.getId().toString())
