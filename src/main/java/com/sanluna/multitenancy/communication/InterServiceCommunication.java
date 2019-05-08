@@ -8,6 +8,12 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.oauth2.client.OAuth2RestOperations;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 
+/**
+ * This class will be the main point of service to service communication.
+ * For example if authentication service calls member service in order to authorize a member login
+ * it may use the GETWithAuth function and it will set the basic headers such as tenantId aswell as the Authorization header
+ * to validate the request.
+ */
 public class InterServiceCommunication {
 
     public static <T> T GETWithAuth(String url, Class<T> classInfo, OAuth2RestOperations restTemplate) {

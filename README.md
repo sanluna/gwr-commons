@@ -7,4 +7,4 @@ In latest pushes i decided to merge the different dependencies together namely:
 * gwr-member-client
 * gwr-tenant-client
 
-Since these packages all depended on each other and is overall used by every single service this was a no brainer for me.
+Since these packages all depended on each other and is overall used by every single service this was a no brainer to me.

@@ -12,6 +12,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Used to convert token sent between services in order to retrieve and save information to token string
+ */
 public class GWRTokenConverter extends JwtAccessTokenConverter {
 
     public static final String GWR_ID = "GWR-id";
