@@ -37,13 +37,13 @@ public class Converter {
 
     public static <TDTO extends BaseDTO<TDTO>, TEntity extends BaseEntity<TEntity>> TEntity toEntity(TDTO dto, TEntity entity) {
         if (dto.getId() != null) {
-            entity.setId(UUID.fromString(dto.getId()));
+            entity.setId(UUID.fromString(dto.getId()))
+            .setCreatedBy(dto.getCreatedBy())
+                    .setCreated(formatTime(dto.getCreated()))
+                    .setLastModified(formatTime(dto.getLastModified()))
+                    .setLastModifiedBy(dto.getLastModifiedBy());
         }
         return entity.setActive(dto.isActive())
-                .setCreatedBy(dto.getCreatedBy())
-                .setCreated(formatTime(dto.getCreated()))
-                .setHidden(dto.isHidden())
-                .setLastModified(formatTime(dto.getLastModified()))
-                .setLastModifiedBy(dto.getLastModifiedBy());
+                .setHidden(dto.isHidden());
     }
 }

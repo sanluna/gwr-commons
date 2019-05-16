@@ -6,7 +6,7 @@
 
     <groupId>com.sanluna.gwr</groupId>
     <artifactId>gwr-commons</artifactId>
-    <version>1.0.0.4</version>
+    <version>1.0.0-LOCAL</version>
     <packaging>jar</packaging>
     <build>
         <plugins>

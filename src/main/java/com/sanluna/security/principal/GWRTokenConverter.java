@@ -17,10 +17,10 @@ import java.util.stream.Collectors;
  */
 public class GWRTokenConverter extends JwtAccessTokenConverter {
 
-    public static final String GWR_ID = "GWR-id";
-    public static final String GWR_USERNAME = "GWR-username";
-    public static final String GWR_TENANT = "GWR-tenant";
-    public static final String GWR_ROLES = "GWR-ROLES";
+    public static final String GWR_ID = "GWR_id";
+    public static final String GWR_USERNAME = "GWR_username";
+    public static final String GWR_TENANT = "GWR_tenant";
+    public static final String GWR_ROLES = "GWR_ROLES";
 
     @Override
     public OAuth2Authentication extractAuthentication(Map<String, ?> map) {

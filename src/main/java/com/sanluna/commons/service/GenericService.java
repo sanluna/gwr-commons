@@ -27,8 +27,7 @@ public abstract class GenericService<T extends BaseEntity<T>> implements BaseSer
                 return genericRepository.save(entity.createNew(GWRTokenHelper.currentUsername()));
             } catch (DataIntegrityViolationException e1) {
                 throw new AlreadyExistsException("object already exists!");
-            } catch (Exception e2) {
-                e2.printStackTrace();
+            } catch (ClassCastException e2) {
                 return genericRepository.save(entity.createNew());
             }
         } catch (Exception e) {
@@ -78,7 +77,7 @@ public abstract class GenericService<T extends BaseEntity<T>> implements BaseSer
 
     protected T checkIfFound(String ID) {
         T entity = genericRepository.findById(UUID.fromString(ID));
-        if (entity == null)
+        if (entity == null || ID.isEmpty())
             throw new NotFoundException("No object with id " + ID + " found");
         else return entity;
     }
